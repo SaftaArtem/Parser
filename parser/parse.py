@@ -13,8 +13,11 @@ def parse(html):
 
 	for row in table.find_all('tr', class_="athing"):
 		cols = row.find_all('td')
+		cols1 = row.find_all('span')
 		projects.append({
-			'title': cols[2].a.text
+			'title': cols[2].a.text,
+			'url': cols[2].a['href'],
+		
 		})
 	for project in projects:
 		print(project)
