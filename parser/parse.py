@@ -13,15 +13,26 @@ def parse(html):
 
 	for row in table.find_all('tr', class_="athing"):
 		cols = row.find_all('td')
-		cols1 = row.find_all('span')
 		projects.append({
 			'title': cols[2].a.text,
 			'url': cols[2].a['href'],
 		
 		})
-	for project in projects:
-		print(project)
+	for row1 in table.find_all('td', class_="subtext"):
+		cols1 = row1.find_all('a', class_='hnuser')
+		projects.append({
+			'author': cols1[0].text,
+		})
 
+	for row2 in table.find_all('span', class_="sitebit comhead"):
+		col2 = row2.find_all('span', class_='sitestr')
+		projects.append({
+			'site': col2[0].text,
+		})
+
+	for item in projects:
+		print(item)
+	
 
 
 
